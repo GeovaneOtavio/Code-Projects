@@ -20,13 +20,13 @@ double multiplication(double n1, double n2){
 double division(double n1, double n2){
     // 'Try' to check if it has division by 0;
     try{
-        if(n2 != 0)
+        if(n2 > 0)
             return n1 / n2;
 
         throw std::error_code();
     }
     catch (...){
-        std::cout << "Division by 0!\n";
+        std::cout << "Error due to a division by 0 or minor!\n";
         throw std::error_code();
     }
 }
@@ -50,11 +50,8 @@ double operators(char oper, double n1, double n2){
             default:
                 throw std::error_condition();
         }
-    } catch (std::string error) {
-        std::cout << "Typed operator does not agree to conditions!\n";
-        throw std::error_condition();
-    }
-    catch (...) {
+    } catch (std::error_condition) {
+        std::cout << "Error due to wrong operator!" << std::endl;
         throw std::error_condition();
     }
 }
@@ -81,7 +78,7 @@ int main() {
             double result = operators(oper, n1, n2);
             std::cout << "Result: " << n1 << oper << n2 << " = " << result << std::endl;
         } catch (...){
-            std::cout << "Due to an Error, please try again!\n";
+            std::cout << "Please try again!\n";
         }
 
         // Check with the user if them want to use the calculator again;
@@ -89,6 +86,7 @@ int main() {
         std::cin >> contn;
 
         contn = toupper(contn);
+
     } while (contn == 'Y');
 
     std::cout << "Thank you for using Simple Calculator\n";
