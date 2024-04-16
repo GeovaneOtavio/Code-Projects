@@ -57,3 +57,6 @@ Thank you for using Simple Calculator!
 
 Contributions to the Simple Calculator project are welcome. If you find any issues or have suggestions for improvements, please create a pull request or open an issue on GitHub.
 
+<h2>License</h2>
+
+This project is licensed under the MIT License.
