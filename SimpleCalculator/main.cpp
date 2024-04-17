@@ -23,11 +23,10 @@ double division(double n1, double n2){
         if(n2 > 0)
             return n1 / n2;
 
-        throw std::error_code();
+        throw std::string("Error due to a division by 0 or minor!");
     }
-    catch (...){
-        std::cout << "Error due to a division by 0 or minor!\n";
-        throw std::error_code();
+    catch (std::string error){
+        throw error;
     }
 }
 
@@ -48,11 +47,10 @@ double operators(char oper, double n1, double n2){
                 return division(n1, n2);
 
             default:
-                throw std::error_condition();
+                throw std::string("Error due to wrong operator!");
         }
-    } catch (std::error_condition) {
-        std::cout << "Error due to wrong operator!" << std::endl;
-        throw std::error_condition();
+    } catch (std::string error) {
+        throw error;
     }
 }
 
@@ -77,8 +75,8 @@ int main() {
         try {
             double result = operators(oper, n1, n2);
             std::cout << "Result: " << n1 << oper << n2 << " = " << result << std::endl;
-        } catch (...){
-            std::cout << "Please try again!\n";
+        } catch (std::string error){
+            std::cout << error << "\nPlease try again!\n";
         }
 
         // Check with the user if them want to use the calculator again;
